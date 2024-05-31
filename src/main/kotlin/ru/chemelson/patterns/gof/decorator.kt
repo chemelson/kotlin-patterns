@@ -4,6 +4,7 @@ fun main() {
     var pizza: Pizza = PlainPizza()
     pizza = CheeseDecorator(pizza)
     pizza = PepperoniDecorator(pizza)
+    pizza = PineappleDecorator(pizza)
 
     println("Cost: " + pizza.cost)
     println("Description: " + pizza.description)
@@ -40,4 +41,10 @@ class PepperoniDecorator(private val pizza: Pizza) : Pizza {
 
     override val description: String
         get() = "${pizza.description}, Pepperoni"
+}
+
+// Third decorator - pay attention to delegation
+class PineappleDecorator(private val pizza: Pizza) : Pizza by pizza {
+    override val description: String
+        get() = "${pizza.description}, Pineapple"
 }
